@@ -4,161 +4,175 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Егор Холкин, бэкенд-разработчик</title>
-<meta name="description" content="Егор Холкин, бэкенд-разработчик из Ростова-на-Дону. Java, Spring Boot, Python. Стажировка в hh.ru, проекты и хакатоны.">
-<meta name="theme-color" content="#1a1613">
-<meta property="og:title" content="Егор Холкин, бэкенд-разработчик">
-<meta property="og:description" content="Java, Spring Boot, Python. Ищу роль бэкенд-разработчика.">
+<meta name="description" content="Егор Холкин, бэкенд-разработчик из Ростова‑на‑Дону: Java, Spring Boot, Python. Проекты, опыт, контакты.">
+<meta name="theme-color" content="#16120c">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231a1613'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' font-family='serif' fill='%23d6a85a'%3EE%3C/text%3E%3C/svg%3E">
+<meta property="og:url" content="https://igorxmel.github.io/">
+<meta property="og:title" content="Егор Холкин, бэкенд-разработчик">
+<meta property="og:description" content="Бэкенд-разработчик из Ростова‑на‑Дону. Java и Spring Boot. Открыт к предложениям.">
+<meta property="og:image" content="https://igorxmel.github.io/assets/egor.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2316120c'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' font-family='serif' fill='%23e3b46a'%3EЕ%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400..700;1,400..700&family=Onest:wght@300..600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:wght@400..700&family=Onest:wght@400..600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=1793307144073">
 <script>document.documentElement.classList.add('js')</script>
 </head>
-<body>
-<div class="progress" aria-hidden="true"></div>
-<div class="glow" aria-hidden="true"></div>
+<body class="layout-stacked">
 
+<div class="lava" aria-hidden="true"><span class="keep-motion"></span><span class="keep-motion"></span><span class="keep-motion"></span><span class="keep-motion"></span><span class="keep-motion"></span></div><div class="grain keep-motion" aria-hidden="true"></div>
 <header class="nav">
   <div class="container nav-in">
-    <a class="wordmark" href="#top" data-i18n="brand">Егор Холкин</a>
-    <nav class="nav-links" aria-label="Разделы">
-      <a href="#work" data-i18n="nav_work">Работы</a>
-      <a href="#path" data-i18n="nav_path">Путь</a>
-      <a href="#contact" data-i18n="nav_contact">Контакты</a>
-    </nav>
-    <button class="lang" type="button" aria-label="Switch language"><span class="lang-to">EN</span></button>
+    <a class="wordmark" href="#top"><span data-i18n="name">Егор Холкин</span><span class="wordmark-nick"><span class="wordmark-sep" aria-hidden="true">/</span>IgorXmel</span></a>
+    <nav class="nav-links" data-i18n-label="nav_label" aria-label="Разделы">
+  <a href="#projects" data-i18n="nav_projects">Проекты</a>
+  <a href="#experience" data-i18n="nav_experience">Опыт</a>
+  <a href="#stack" data-i18n="nav_stack">Стек</a>
+  <a href="#contact" data-i18n="nav_contact">Контакты</a></nav>
+    <button class="lang" type="button" data-i18n="lang_btn" data-i18n-label="lang_btn_label" aria-label="Switch to English">EN</button>
   </div>
 </header>
-
 <main id="top">
   <section class="hero">
     <div class="container hero-in">
-      <h1 class="hero-title" data-i18n-html="hero_h1"><span class="line"><span>Бэкенд, на который</span></span><span class="line"><span>можно опереться</span></span></h1>
-      <div class="hero-rule" aria-hidden="true"></div>
-      <div class="hero-foot">
-        <p class="hero-lead" data-i18n="hero_lead">Егор Холкин. Java, Spring Boot, Python. Ищу роль бэкендера.</p>
-        <div class="actions">
-          <a class="btn btn-primary" href="https://t.me/IgorXmel" data-i18n="cta_tg">Написать в Telegram</a>
-          <a class="link" href="#work" data-i18n="cta_work">Смотреть работы</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="work">
-    <div class="container">
-      <h2 class="section-title rv" data-i18n="work_h">Работы, которые живут</h2>
-
-      <article class="project rv">
-        <div class="project-copy">
-          <h3>ZapretXmel</h3>
-          <p data-i18n="zx_p">Обход блокировок в одном окне: ядро zapret, прокси для Telegram, подбор стратегии перебором. Программа сама ставит и обновляет чужие инструменты.</p>
-          <ul class="facts">
-            <li><span class="num">v0.1.56</span><span data-i18n="zx_f1">актуальный релиз</span></li>
-            <li><span class="num">9</span><span data-i18n="zx_f2">звёзд на GitHub</span></li>
-            <li><span>PyQt6</span><span data-i18n="zx_f3">Windows 10/11, GPLv3</span></li>
-          </ul>
-          <div class="links">
-            <a class="link" href="https://igorxmel.github.io/ZapretXmel/" data-i18n="zx_l1">Страница проекта</a>
-            <a class="link" href="https://github.com/igorxmel/ZapretXmel" data-i18n="l_src">Исходники</a>
-          </div>
-        </div>
-        <a class="shot" href="https://igorxmel.github.io/ZapretXmel/" aria-label="ZapretXmel">
-          <img src="assets/zapretxmel.png" width="1440" height="900" alt="Страница проекта ZapretXmel: логотип, описание и кнопка скачивания" loading="lazy">
-        </a>
-      </article>
-
-      <article class="project project-flip rv">
-        <div class="project-copy">
-          <h3>TierXmel</h3>
-          <p data-i18n="tx_p">Личный рейтинг игр без сборки и бэкенда: HTML, ES-модули, JSON. Тир вычисляется из оценки, руками его не поставить.</p>
-          <div class="links">
-            <a class="link" href="https://igorxmel.github.io/TierXmel/" data-i18n="tx_l1">Открыть сайт</a>
-            <a class="link" href="https://github.com/igorxmel/TierXmel" data-i18n="l_src">Исходники</a>
-          </div>
-        </div>
-        <div class="scale" role="group" aria-label="Две оси оценки" data-i18n-aria="tx_aria">
-          <div class="scale-axis"><span class="scale-fig num">900</span><span class="scale-cap" data-i18n="tx_a1">максимум баллов за качество по критериям</span></div>
-          <div class="scale-axis"><span class="scale-fig num">100</span><span class="scale-cap" data-i18n="tx_a2">максимум баллов за кайф одним слайдером</span></div>
-        </div>
-      </article>
-
-      <article class="project rv">
-        <div class="project-copy">
-          <h3>JavaLibrary</h3>
-          <p data-i18n="jl_p">Библиотека на трёх Spring-сервисах с PostgreSQL. Разворачивается через Docker одной командой.</p>
-          <div class="links">
-            <a class="link" href="https://github.com/igorxmel/JavaLibrary" data-i18n="l_src">Исходники</a>
-          </div>
-        </div>
-        <ol class="services">
-          <li><span class="svc-name" data-i18n="jl_s1">Сайт</span><span class="svc-meta">Spring, Thymeleaf</span></li>
-          <li><span class="svc-name" data-i18n="jl_s2">Пользователи</span><span class="svc-meta">Spring, JWT, порт 8092</span></li>
-          <li><span class="svc-name" data-i18n="jl_s3">Книги</span><span class="svc-meta">Spring, порт 8090</span></li>
-        </ol>
-      </article>
-
-      <ul class="index rv">
-        <li><a href="https://github.com/igorxmel/agent-offload"><span class="ix-name">agent-offload</span><span class="ix-desc" data-i18n="ix1">Тяжёлую работу агента отдаём бесплатным моделям OpenCode</span><span class="ix-tech">Python</span></a></li>
-        <li><a href="https://github.com/igorxmel/GigaSecretary"><span class="ix-name">GigaSecretary</span><span class="ix-desc" data-i18n="ix2">ИИ-секретарь, хакатон «Весна 2025», 2 место</span><span class="ix-tech">Flutter</span></a></li>
-        <li><a href="https://github.com/igorxmel/WebKNB"><span class="ix-name">WebKNB</span><span class="ix-desc" data-i18n="ix3">Камень-ножницы-бумага по жестам руки, DevHack #5, 2 место</span><span class="ix-tech">Django</span></a></li>
-        <li><a href="https://github.com/igorxmel/BotEasyRemote"><span class="ix-name">BotEasyRemote</span><span class="ix-desc" data-i18n="ix4">Десктоп-панель управления Telegram-ботами</span><span class="ix-tech">Python</span></a></li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="section" id="path">
-    <div class="container path">
-      <div class="path-main rv">
-        <h2 class="section-title" data-i18n="path_h">Стажировка в hh.ru</h2>
-        <p class="path-lead" data-i18n="path_p">С февраля по август 2026 писал бэкенд внутренней платформы отбора в школы аналитиков: Spring Boot, PostgreSQL с миграциями Liquibase, MinIO, всё в Docker, выкладка через GitHub Actions. Сделал ИИ-проверку решений для администраторов.</p>
-      </div>
-      <div class="path-side rv">
-        <h3 data-i18n="hk_h">Хакатоны</h3>
-        <p class="path-note" data-i18n="hk_p">Больше десяти за три года, в каждом веду команду.</p>
-        <ul class="medals">
-          <li><span>DevHack #5</span><span data-i18n="hk_2">2 место</span></li>
-          <li><span data-i18n="hk_s25">Хакатон Весна 2025</span><span data-i18n="hk_2">2 место</span></li>
-          <li><span>DevHack #6</span><span data-i18n="hk_3">3 место</span></li>
-          <li><span>RinHack #9</span><span data-i18n="hk_f">финалист</span></li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="stack">
-    <div class="container">
-      <h2 class="section-title rv" data-i18n="st_h">Чем работаю</h2>
-      <div class="stack rv">
-        <div><h3 data-i18n="st_b">Бэкенд</h3><p>Java, Spring Boot, Python</p></div>
-        <div><h3 data-i18n="st_d">Данные</h3><p>PostgreSQL, Liquibase, MinIO</p></div>
-        <div><h3 data-i18n="st_i">Инфраструктура</h3><p>Docker, GitHub Actions, Nginx, Linux</p></div>
-        <div><h3 data-i18n="st_a">ИИ в продукте</h3><p data-i18n="st_ap">Claude и сопутствующий инструментарий</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section contact" id="contact">
-    <div class="container">
-      <h2 class="contact-title rv" data-i18n="ct_h">Давайте строить</h2>
-      <div class="contact-links rv">
-        <a class="contact-main" href="https://t.me/IgorXmel">@IgorXmel</a>
-        <a href="mailto:mail.igorxmel@gmail.com">mail.igorxmel@gmail.com</a>
-        <a href="https://github.com/igorxmel">github.com/igorxmel</a>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer class="footer">
-  <div class="container footer-in">
-    <span class="wordmark" data-i18n="brand">Егор Холкин</span>
-    <span class="footer-note" data-i18n="ft">Ростов-на-Дону</span>
+      <div class="hero-text">
+        <h1 class="hero-h" data-i18n="name">Егор Холкин</h1>
+        <p data-i18n="lead" class="hero-p">Бэкенд-разработчик из Ростова‑на‑Дону. Java и Spring Boot. Открыт к предложениям.</p>
+        
+  <div class="actions">
+    <a class="btn btn-primary" href="https://t.me/IgorXmel" data-i18n="cta_tg">Написать в Telegram</a>
+    <a class="btn btn-secondary" href="#projects" data-i18n="cta_projects">Проекты</a>
   </div>
-</footer>
+      </div>
+      <figure class="hero-photo">
+        <img src="assets/egor.jpg" width="640" height="640" fetchpriority="high" data-i18n-alt="photo_alt" alt="Егор Холкин, портрет">
+      </figure>
+    </div>
+  </section>
+  <div class="container">
+<section class="sec" id="projects" aria-labelledby="projects-h">
+  <h2 data-i18n="projects_h" class="sec-h rv" id="projects-h">Открытые проекты</h2>
+  <p data-i18n="projects_note" class="sec-note rv">Здесь только то, что лежит в открытом доступе. Основная работа, платформа для hh.ru, закрыта, о ней ниже в разделе «Опыт».</p>
 
-<script src="main.js"></script>
+  <article class="proj proj-zx rv">
+    <div class="proj-text">
+      <h3 class="proj-h">ZapretXmel</h3>
+      <p data-i18n="zx_p" class="proj-p">Программа для Windows, которая возвращает YouTube, Discord и Telegram, когда их режет провайдер. Сама ставит и обновляет zapret, подбирает рабочую стратегию и показывает, где именно рвётся соединение.</p>
+      <dl class="facts">
+        <div><dt data-i18n="zx_k1">Версия</dt><dd class="num">0.1.56</dd></div>
+        <div><dt data-i18n="zx_k2">Звёзды на GitHub</dt><dd class="num">9</dd></div>
+        <div><dt data-i18n="zx_k3">Стек</dt><dd>Python, PyQt6</dd></div>
+      </dl>
+      <div class="proj-links">
+        <a class="btn btn-sm" href="https://igorxmel.github.io/ZapretXmel/" data-i18n="zx_site">Сайт проекта</a>
+        <a class="btn btn-sm btn-quiet" href="https://github.com/igorxmel/ZapretXmel">GitHub</a>
+      </div>
+    </div>
+    <figure class="proj-media">
+      <img src="assets/zapretxmel-app.png" width="1320" height="880" data-i18n-alt="zx_alt" alt="Главный экран ZapretXmel: кнопки включения обхода и прокси для Telegram, состояние службы и быстрые действия">
+    </figure>
+  </article>
+
+  <article class="proj proj-tx rv">
+    <div class="proj-text">
+      <h3 class="proj-h">TierXmel</h3>
+      <p data-i18n="tx_p" class="proj-p">Мой рейтинг игр. Статический сайт без сборки и сервера: оценка складывается из критериев жанра, а тир выставляется сам, вручную его не поменять.</p>
+      <div class="proj-links">
+        <a class="btn btn-sm" href="https://igorxmel.github.io/TierXmel/" data-i18n="tx_site">Открыть сайт</a>
+        <a class="btn btn-sm btn-quiet" href="https://github.com/igorxmel/TierXmel">GitHub</a>
+      </div>
+    </div>
+    <div class="proj-media scales">
+      <p class="scale"><span class="scale-n num">900</span><span data-i18n="tx_s1" class="scale-c">баллов за качество, по критериям</span></p>
+      <p class="scale"><span class="scale-n num">100</span><span data-i18n="tx_s2" class="scale-c">баллов за кайф, одним ползунком</span></p>
+    </div>
+  </article>
+
+  <article class="proj proj-jl rv">
+    <div class="proj-text">
+      <h3 class="proj-h">JavaLibrary</h3>
+      <p data-i18n="jl_p" class="proj-p">Библиотечная система из трёх сервисов на Spring. У книг и пользователей своя база PostgreSQL, вход по JWT, всё поднимается одной командой через Docker Compose.</p>
+      <div class="proj-links">
+        <a class="btn btn-sm btn-quiet" href="https://github.com/igorxmel/JavaLibrary">GitHub</a>
+      </div>
+    </div>
+    <ol class="proj-media services">
+      <li><span data-i18n="jl_s1" class="svc-n">Сайт</span><span class="svc-m">Spring, Thymeleaf</span></li>
+      <li><span data-i18n="jl_s2" class="svc-n">Пользователи</span><span data-i18n="jl_m2" class="svc-m">Spring, JWT, порт 8092</span></li>
+      <li><span data-i18n="jl_s3" class="svc-n">Книги</span><span data-i18n="jl_m3" class="svc-m">Spring, REST, порт 8090</span></li>
+    </ol>
+  </article>
+
+  <div class="more rv">
+    <h3 data-i18n="more_h" class="more-h">Ещё</h3>
+    <ul class="more-list">
+      <li><a href="https://github.com/igorxmel/agent-offload"><span class="more-n">agent-offload</span><span data-i18n="m1" class="more-d">Отдаёт рутину ИИ-агента бесплатным моделям OpenCode, чтобы дорогие токены уходили на решения, а не на набор кода.</span><span class="more-t">Python</span></a></li>
+      <li><a href="https://github.com/igorxmel/GigaSecretary"><span class="more-n">GigaSecretary</span><span data-i18n="m2" class="more-d">ИИ-секретарь на Flutter. Второе место на хакатоне «Весна 2025».</span><span class="more-t">Flutter</span></a></li>
+      <li><a href="https://github.com/igorxmel/WebKNB"><span class="more-n">WebKNB</span><span data-i18n="m3" class="more-d">Камень, ножницы, бумага: жест показываешь рукой в камеру. Второе место на DevHack #5.</span><span class="more-t">Django</span></a></li>
+      <li><a href="https://github.com/igorxmel/BotEasyRemote"><span class="more-n">BotEasyRemote</span><span data-i18n="m4" class="more-d">Запуск, перезапуск и остановка ботов из трея, без консоли.</span><span class="more-t">Python</span></a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec" id="experience" aria-labelledby="experience-h">
+  <h2 data-i18n="exp_h" class="sec-h rv" id="experience-h">Опыт</h2>
+  <article class="job rv">
+    <header class="job-head">
+      <h3 class="job-co">hh.ru</h3>
+      <p data-i18n="hh_role" class="job-role">Стажёр, бэкенд-разработчик</p>
+      <p data-i18n="hh_dates" class="job-dates">С февраля по август 2026</p>
+    </header>
+    <div class="job-body">
+      <p data-i18n="hh_p1">Писал бэкенд внутренней платформы, через которую hh.ru отбирает студентов в школы аналитиков.</p>
+      <ul class="chips">
+        <li>Spring Boot</li><li>PostgreSQL</li><li>Liquibase</li><li>MinIO</li><li>Docker</li><li>GitHub Actions</li>
+      </ul>
+      <p data-i18n="hh_p2">Сделал ИИ-проверку решений: она помогает администраторам разбирать присланные задания.</p>
+    </div>
+  </article>
+  <div class="hk rv">
+    <div class="hk-text">
+      <h3 data-i18n="hk_h" class="hk-h">Хакатоны</h3>
+      <p data-i18n="hk_p">Больше десяти за три года. В каждом был капитаном: собирал команду, делил задачи, защищал проект.</p>
+    </div>
+    <ul class="hk-list">
+      <li><span>DevHack #5</span><span data-i18n="place2" class="hk-r">второе место</span></li>
+      <li><span data-i18n="hk_spring">Хакатон «Весна 2025»</span><span data-i18n="place2" class="hk-r">второе место</span></li>
+      <li><span>DevHack #6</span><span data-i18n="place3" class="hk-r">третье место</span></li>
+      <li><span>RinHack #9</span><span data-i18n="finalist" class="hk-r">финал</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec" id="stack" aria-labelledby="stack-h">
+  <h2 data-i18n="stack_h" class="sec-h rv" id="stack-h">Стек</h2>
+  <div class="stack rv">
+    <div><h3 data-i18n="st_b">Бэкенд</h3><p>Java, Spring Boot, Python</p></div>
+    <div><h3 data-i18n="st_d">Данные</h3><p>PostgreSQL, Liquibase, MinIO</p></div>
+    <div><h3 data-i18n="st_i">Инфраструктура</h3><p>Docker, GitHub Actions, Nginx, Linux</p></div>
+    <div><h3 data-i18n="st_a">ИИ</h3><p data-i18n="st_ap">Claude, ИИ-функции в продуктах</p></div>
+  </div>
+</section>
+
+<section class="sec contact" id="contact" aria-labelledby="contact-h">
+  <h2 data-i18n="contact_h" class="contact-h rv" id="contact-h">Связаться со мной</h2>
+  <p data-i18n="contact_p" class="contact-p rv">Открыт к предложениям о работе бэкенд-разработчиком. Удобнее всего писать в Telegram.</p>
+  <p data-i18n="handle_p" class="contact-p contact-handle rv">Если встретите где-то ник IgorXmel, это тоже я. Под ним выходят мои проекты, отсюда и Xmel в их названиях.</p>
+  <ul class="contact-list rv">
+    <li><a class="contact-a contact-main" href="https://t.me/IgorXmel"><span class="contact-k">Telegram</span><span class="contact-v">@IgorXmel</span></a></li>
+    <li><a class="contact-a" href="mailto:mail.igorxmel@gmail.com"><span class="contact-k">Email</span><span class="contact-v">mail.igorxmel@gmail.com</span></a></li>
+    <li><a class="contact-a" href="https://github.com/igorxmel"><span class="contact-k">GitHub</span><span class="contact-v">igorxmel</span></a></li>
+  </ul>
+</section></div>
+</main>
+<div class="container">
+<footer class="footer">
+  <div class="footer-in">
+    <span class="footer-name" data-i18n="name">Егор Холкин</span>
+    <span data-i18n="footer_city">Ростов-на-Дону</span>
+  </div>
+</footer></div>
+<script src="i18n.js?v=1793307144073"></script>
+<script src="site.js?v=1793307144073"></script>
 </body>
 </html>

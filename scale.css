@@ -5,14 +5,8 @@
   --text-section: clamp(2rem, 2.5vw + 1rem, 3.5rem); --text-title: clamp(1.25rem, 0.75vw + 0.875rem, 1.625rem); --text-lead: clamp(1.125rem, 0.35vw + 1rem, 1.375rem);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1); --ease-in: cubic-bezier(0.7, 0, 0.84, 0); --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
   --dur-micro: 120ms; --dur-short: 220ms; --dur-long: 420ms;
-  --color-error: oklch(52% 0.19 27); --color-success: oklch(50% 0.12 150);
   --container: 1440px; --gutter: 64px; --gap-columns: 32px; --section-gap-s: 120px; --section-gap: 144px; --section-gap-l: 176px;
   --z-base: 1; --z-raised: 10; --z-dropdown: 100; --z-sticky: 200; --z-sticky-nav: 300; --z-modal: 400; --z-toast: 500; --z-tooltip: 600;
-  --color-paper: oklch(0.165 0.008 60); --color-paper-2: oklch(0.205 0.010 60); --color-paper-3: oklch(0.25 0.012 60);
-  --color-ink: oklch(0.94 0.012 85); --color-ink-2: oklch(0.82 0.012 85); --color-muted: oklch(0.68 0.012 80);
-  --color-rule: oklch(0.32 0.010 70);
-  --color-accent: oklch(0.77 0.095 78); --color-accent-ink: oklch(0.2 0.02 70); --color-focus: oklch(0.82 0.11 80);
-  --font-display: "Libre Bodoni", "Bodoni MT", ui-serif, serif; --font-body: "Onest", ui-sans-serif, system-ui, sans-serif; --font-outlier: var(--font-body);
   --radius-card: 2px; --radius-pill: 999px; --rule-hair: 1px; --shadow-card: none;
   --tracking-display: -0.02em;
 }
