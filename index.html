@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:wght@400..700&family=Onest:wght@400..600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=1793307144073">
+<link rel="stylesheet" href="style.css?v=1793376672343">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body class="layout-stacked">
@@ -59,8 +59,8 @@
       <h3 class="proj-h">ZapretXmel</h3>
       <p data-i18n="zx_p" class="proj-p">Программа для Windows, которая возвращает YouTube, Discord и Telegram, когда их режет провайдер. Сама ставит и обновляет zapret, подбирает рабочую стратегию и показывает, где именно рвётся соединение.</p>
       <dl class="facts">
-        <div><dt data-i18n="zx_k1">Версия</dt><dd class="num">0.1.56</dd></div>
-        <div><dt data-i18n="zx_k2">Звёзды на GitHub</dt><dd class="num">9</dd></div>
+        <div><dt data-i18n="zx_k1">Версия</dt><dd class="num" data-gh-version="ZapretXmel">0.1.57</dd></div>
+        <div><dt data-i18n="zx_k2">Звёзды на GitHub</dt><dd class="num" data-gh-stars="ZapretXmel">9</dd></div>
         <div><dt data-i18n="zx_k3">Стек</dt><dd>Python, PyQt6</dd></div>
       </dl>
       <div class="proj-links">
@@ -73,44 +73,52 @@
     </figure>
   </article>
 
-  <article class="proj proj-tx rv">
+  <article class="proj proj-flip rv">
     <div class="proj-text">
-      <h3 class="proj-h">TierXmel</h3>
-      <p data-i18n="tx_p" class="proj-p">Мой рейтинг игр. Статический сайт без сборки и сервера: оценка складывается из критериев жанра, а тир выставляется сам, вручную его не поменять.</p>
+      <h3 class="proj-h">agent-offload</h3>
+      <p data-i18n="ao_p" class="proj-p">Отдаёт объёмную работу ИИ-агента бесплатным моделям OpenCode. Основной агент, будь то Claude или Codex, ставит задачу и получает короткий вердикт, поэтому дорогие токены уходят на решения, а не на набор текста.</p>
+      <dl class="facts">
+        <div><dt data-i18n="zx_k3">Стек</dt><dd>Python</dd></div>
+        <div><dt data-i18n="ao_k1">Статус</dt><dd data-i18n="ao_v1">альфа</dd></div>
+      </dl>
       <div class="proj-links">
-        <a class="btn btn-sm" href="https://igorxmel.github.io/TierXmel/" data-i18n="tx_site">Открыть сайт</a>
-        <a class="btn btn-sm btn-quiet" href="https://github.com/igorxmel/TierXmel">GitHub</a>
+        <a class="btn btn-sm btn-quiet" href="https://github.com/igorxmel/agent-offload">GitHub</a>
       </div>
     </div>
-    <div class="proj-media scales">
-      <p class="scale"><span class="scale-n num">900</span><span data-i18n="tx_s1" class="scale-c">баллов за качество, по критериям</span></p>
-      <p class="scale"><span class="scale-n num">100</span><span data-i18n="tx_s2" class="scale-c">баллов за кайф, одним ползунком</span></p>
-    </div>
+    <figure class="proj-media code">
+      <pre><code>offload init
+offload models --allowed
+offload pick --role build -v
+offload delegate --task "…"</code></pre>
+    </figure>
   </article>
 
-  <article class="proj proj-jl rv">
+  <article class="proj rv">
     <div class="proj-text">
-      <h3 class="proj-h">JavaLibrary</h3>
-      <p data-i18n="jl_p" class="proj-p">Библиотечная система из трёх сервисов на Spring. У книг и пользователей своя база PostgreSQL, вход по JWT, всё поднимается одной командой через Docker Compose.</p>
+      <h3 class="proj-h">xmel-mods</h3>
+      <p data-i18n="xm_p" class="proj-p">Три мода для Claude Code. Пиксельный краб показывает лимиты за 5 часов и за неделю, наборы правил включаются кнопкой в нужной сессии, а страж секретов прячет токены и ключи от модели и не даёт закоммитить .env.</p>
+      <dl class="facts">
+        <div><dt data-i18n="xm_k1">Модов</dt><dd class="num">3</dd></div>
+        <div><dt data-i18n="zx_k3">Стек</dt><dd>TypeScript</dd></div>
+        <div><dt data-i18n="xm_k2">Лицензия</dt><dd>MIT</dd></div>
+      </dl>
       <div class="proj-links">
-        <a class="btn btn-sm btn-quiet" href="https://github.com/igorxmel/JavaLibrary">GitHub</a>
+        <a class="btn btn-sm btn-quiet" href="https://github.com/igorxmel/xmel-mods">GitHub</a>
       </div>
     </div>
-    <ol class="proj-media services">
-      <li><span data-i18n="jl_s1" class="svc-n">Сайт</span><span class="svc-m">Spring, Thymeleaf</span></li>
-      <li><span data-i18n="jl_s2" class="svc-n">Пользователи</span><span data-i18n="jl_m2" class="svc-m">Spring, JWT, порт 8092</span></li>
-      <li><span data-i18n="jl_s3" class="svc-n">Книги</span><span data-i18n="jl_m3" class="svc-m">Spring, REST, порт 8090</span></li>
-    </ol>
+    <figure class="proj-media">
+      <img src="assets/xmel-mods.png" width="1280" height="640" loading="lazy" data-i18n-alt="xm_alt" alt="Баннер xmel-mods: пиксельный краб на пляже пишет код на ноутбуке">
+    </figure>
   </article>
 
   <div class="more rv">
-    <h3 data-i18n="more_h" class="more-h">Ещё</h3>
+    <h3 data-i18n="more_h" class="more-h">Другие проекты</h3>
     <ul class="more-list">
-      <li><a href="https://github.com/igorxmel/agent-offload"><span class="more-n">agent-offload</span><span data-i18n="m1" class="more-d">Отдаёт рутину ИИ-агента бесплатным моделям OpenCode, чтобы дорогие токены уходили на решения, а не на набор кода.</span><span class="more-t">Python</span></a></li>
-      <li><a href="https://github.com/igorxmel/GigaSecretary"><span class="more-n">GigaSecretary</span><span data-i18n="m2" class="more-d">ИИ-секретарь на Flutter. Второе место на хакатоне «Весна 2025».</span><span class="more-t">Flutter</span></a></li>
+      <li><a href="https://github.com/igorxmel/JavaLibrary"><span class="more-n">JavaLibrary</span><span data-i18n="m_jl" class="more-d">Библиотека на трёх сервисах Spring с PostgreSQL и входом по JWT. Поднимается одной командой Docker Compose.</span><span class="more-t">Java</span></a></li>
+      <li><a href="https://github.com/igorxmel/TierXmel"><span class="more-n">TierXmel</span><span data-i18n="m_tx" class="more-d">Мой рейтинг игр: статический сайт, где тир вычисляется из оценки по критериям.</span><span class="more-t">JavaScript</span></a></li>
       <li><a href="https://github.com/igorxmel/WebKNB"><span class="more-n">WebKNB</span><span data-i18n="m3" class="more-d">Камень, ножницы, бумага: жест показываешь рукой в камеру. Второе место на DevHack #5.</span><span class="more-t">Django</span></a></li>
-      <li><a href="https://github.com/igorxmel/BotEasyRemote"><span class="more-n">BotEasyRemote</span><span data-i18n="m4" class="more-d">Запуск, перезапуск и остановка ботов из трея, без консоли.</span><span class="more-t">Python</span></a></li>
     </ul>
+    <a class="more-all" href="https://github.com/igorxmel?tab=repositories" data-i18n="more_all">Все репозитории на GitHub</a>
   </div>
 </section>
 
@@ -118,7 +126,10 @@
   <h2 data-i18n="exp_h" class="sec-h rv" id="experience-h">Опыт</h2>
   <article class="job rv">
     <header class="job-head">
-      <h3 class="job-co">hh.ru</h3>
+      <a class="job-co" href="https://hh.ru/">
+        <img class="job-logo" src="assets/hh.svg" width="48" height="48" data-i18n-alt="hh_logo_alt" alt="Логотип hh.ru">
+        <h3>hh.ru</h3>
+      </a>
       <p data-i18n="hh_role" class="job-role">Стажёр, бэкенд-разработчик</p>
       <p data-i18n="hh_dates" class="job-dates">С февраля по август 2026</p>
     </header>
@@ -172,7 +183,7 @@
     <span data-i18n="footer_city">Ростов-на-Дону</span>
   </div>
 </footer></div>
-<script src="i18n.js?v=1793307144073"></script>
-<script src="site.js?v=1793307144073"></script>
+<script src="i18n.js?v=1793376672343"></script>
+<script src="site.js?v=1793376672343"></script>
 </body>
 </html>

@@ -74,4 +74,15 @@
     const hero = document.querySelector('.hero');
     if (hero) spy.observe(hero);
   }
+
+  /* живые версия и звёзды с GitHub; при ошибке остаются значения из разметки */
+  const repos = new Set([...document.querySelectorAll('[data-gh-version], [data-gh-stars]')].map((n) => n.dataset.ghVersion || n.dataset.ghStars));
+  repos.forEach(async (repo) => {
+    try {
+      const api = `https://api.github.com/repos/igorxmel/${repo}`;
+      const [r, rel] = await Promise.all([fetch(api), fetch(`${api}/releases/latest`)]);
+      if (r.ok) { const d = await r.json(); document.querySelectorAll(`[data-gh-stars="${repo}"]`).forEach((n) => (n.textContent = d.stargazers_count)); }
+      if (rel.ok) { const d = await rel.json(); document.querySelectorAll(`[data-gh-version="${repo}"]`).forEach((n) => (n.textContent = String(d.tag_name).replace(/^v/, ''))); }
+    } catch (e) {}
+  });
 })();
