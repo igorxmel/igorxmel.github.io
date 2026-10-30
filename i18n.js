@@ -1,7 +1,7 @@
 // Сгенерировано build.mjs, правьте текст там.
 window.I18N = {
  "ru": {
-  "title": "Егор Холкин, бэкенд-разработчик",
+  "title": "IgorXmel · Егор Холкин, бэкенд-разработчик",
   "description": "Егор Холкин, бэкенд-разработчик из Ростова‑на‑Дону: Java, Spring Boot, Python. Проекты, опыт, контакты.",
   "name": "Егор Холкин",
   "lead": "Бэкенд-разработчик из Ростова‑на‑Дону. Java и Spring Boot. Открыт к предложениям.",
@@ -61,7 +61,7 @@ window.I18N = {
   "modal_h": "Выберите язык"
  },
  "en": {
-  "title": "Egor Holkin, backend developer",
+  "title": "IgorXmel · Egor Holkin, backend developer",
   "description": "Egor Holkin, backend developer from Rostov‑on‑Don: Java, Spring Boot, Python. Projects, experience, contacts.",
   "name": "Egor Holkin",
   "lead": "Backend developer from Rostov‑on‑Don. Java and Spring Boot. Open to offers.",

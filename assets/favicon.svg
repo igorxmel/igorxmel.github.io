@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="b" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f2ca8d"/>
+      <stop offset="0.55" stop-color="#eab26b"/>
+      <stop offset="1" stop-color="#b9823f"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#0d0906"/>
+  <path d="M30.5 16 L30.8 7 Q31 5.5 32.5 5.5 Q34 5.5 33.5 7 L33.5 16 Z" fill="#b9823f" stroke="#6f491b" stroke-width="1.2" stroke-linejoin="round"/>
+  <path d="M33 10.5 Q42 3 53 8 Q46 17 33 10.5 Z" fill="#eab26b" stroke="#6f491b" stroke-width="1.4" stroke-linejoin="round"/>
+  <path d="M19.7 15 Q19.7 25 26.5 30 Q33.3 25 33.3 15 Z" fill="url(#b)" stroke="#6f491b" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="M30.7 15 Q30.7 25 37.5 30 Q44.3 25 44.3 15 Z" fill="url(#b)" stroke="#6f491b" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="M14.2 24 Q14.2 34 21 39 Q27.8 34 27.8 24 Z" fill="url(#b)" stroke="#6f491b" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="M25.2 24 Q25.2 34 32 39 Q38.8 34 38.8 24 Z" fill="url(#b)" stroke="#6f491b" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="M36.2 24 Q36.2 34 43 39 Q49.8 34 49.8 24 Z" fill="url(#b)" stroke="#6f491b" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="M19.7 33 Q19.7 43 26.5 48 Q33.3 43 33.3 33 Z" fill="url(#b)" stroke="#6f491b" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="M30.7 33 Q30.7 43 37.5 48 Q44.3 43 44.3 33 Z" fill="url(#b)" stroke="#6f491b" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="M25.2 42 Q25.2 52 32 57 Q38.8 52 38.8 42 Z" fill="url(#b)" stroke="#6f491b" stroke-width="1.6" stroke-linejoin="round"/>
+</svg>
