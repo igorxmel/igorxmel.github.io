@@ -222,3 +222,35 @@
 @keyframes mottle { 0% { transform: translate(0, 0) scale(1); } 50% { transform: translate(-4%, 3%) scale(1.06); } 100% { transform: translate(3%, -4%) scale(1.03) rotate(2deg); } }
 .grain::after { background-image: var(--grain-fine); background-size: 220px; opacity: var(--grain-opacity); }
 
+
+/* телефон: проекты и опыт компактнее, картинка сразу под названием */
+@media (max-width: 40rem) {
+  .sec-h { margin-bottom: var(--space-lg); }
+  .sec-note { margin: 0 0 var(--space-lg); font-size: var(--text-sm); }
+  .proj, .proj-flip { gap: var(--space-sm); padding: var(--space-lg) var(--space-md); margin-bottom: var(--space-md); }
+  .proj-text { display: contents; }
+  .proj-h { order: 1; font-size: 2rem; }
+  .proj-media { order: 2; margin-block: var(--space-xs); }
+  .proj-p { order: 3; font-size: var(--text-md); line-height: 1.5; }
+  .facts { order: 4; display: flex; flex-wrap: wrap; gap: var(--space-xs) var(--space-md); }
+  .facts dt { font-size: var(--text-xs); }
+  .facts dd, .layout-stacked .facts dd { font-family: var(--font-body); font-size: var(--text-md); font-weight: 500; }
+  .proj-links { order: 5; margin-top: var(--space-xs); }
+  .proj-media.code { padding: var(--space-md); }
+  .proj-media.code pre { font-size: var(--text-xs); line-height: 1.8; }
+  .more { margin-top: var(--space-xl); }
+  .more-list a { gap: var(--space-2xs) var(--space-md); padding-block: var(--space-md); }
+  .more-n { font-size: var(--text-lg); }
+  .more-d { font-size: var(--text-sm); }
+  .job { gap: var(--space-md); padding: var(--space-lg) var(--space-md); }
+  .job-co h3 { font-size: 2rem; }
+  .job-logo { width: 36px; }
+  .job-role { font-size: var(--text-md); }
+  .job-dates { font-size: var(--text-sm); }
+  .job-body { gap: var(--space-md); font-size: var(--text-md); }
+  .chips li { padding: var(--space-2xs) var(--space-xs); font-size: var(--text-xs); }
+  .hk { margin-top: var(--space-xl); gap: var(--space-md); }
+  .hk-text { font-size: var(--text-sm); }
+  .hk-list li { padding-block: var(--space-sm); font-size: var(--text-md); }
+  .hk-r { font-size: var(--text-sm); }
+}
