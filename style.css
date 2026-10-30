@@ -3,9 +3,9 @@
  * axes: dark/high-contrast-serif/warm · posture: restrained · contrast: pass · fold: pass · v2.0.0 */
 /* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V4 · weakest: S, TierXmel has no screenshot so its two real scales are set large instead */
 /* Hallmark · waive 81 · five radial gradient spans in .lava behind every section, moving by transform only · the user asked for a lava lamp gradient as the page background, it is the ground of the page and not a picture slot */
-@import url("./scale.css?v=1793393255126");
-@import url("./base.css?v=1793393255126");
-@import url("./common.css?v=1793393255126");
+@import url("./scale.css?v=1793393382637");
+@import url("./base.css?v=1793393382637");
+@import url("./common.css?v=1793393382637");
 
 :root {
   --color-paper: oklch(0.145 0.01 72); --color-paper-2: oklch(0.19 0.012 72); --color-paper-3: oklch(0.24 0.014 72);
@@ -15,7 +15,7 @@
   --lava-1: oklch(0.66 0.13 78); --lava-2: oklch(0.62 0.1 86); --lava-3: oklch(0.44 0.08 68); --lava-4: oklch(0.52 0.1 84); --lava-5: oklch(0.58 0.12 72);
   --lava-opacity: 0.55; --lava-blend: screen; --lava-veil-in: 30%; --lava-veil-out: 78%;
   --grain-opacity: 0.06; --mottle-opacity: 0.22;
-  --font-display: "Libre Bodoni", ui-serif, serif; --font-body: "Onest", ui-sans-serif, sans-serif; --font-figure: var(--font-display);
+  --font-display: "Libre Bodoni", "Playfair Display", ui-serif, serif; --font-body: "Onest", ui-sans-serif, sans-serif; --font-figure: var(--font-display);
   --head-weight: 500; --wordmark-weight: 600;
   --text-hero: clamp(3.25rem, 7.5vw, 8rem); --hero-leading: 0.92; --tracking-hero: -0.035em;
   --text-proj: clamp(2.5rem, 4vw + 1rem, 4.5rem); --text-scale: clamp(4rem, 9vw, 8rem); --text-contact: clamp(3.25rem, 9vw, 9rem); --text-side-h: 4rem;
