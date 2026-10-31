@@ -3,9 +3,9 @@
  * axes: dark/high-contrast-serif/warm · posture: restrained · contrast: pass · fold: pass · v2.0.0 */
 /* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V4 · weakest: S, TierXmel has no screenshot so its two real scales are set large instead */
 /* Hallmark · waive 81 · five radial gradient spans in .lava behind every section, moving by transform only · the user asked for a lava lamp gradient as the page background, it is the ground of the page and not a picture slot */
-@import url("./scale.css?v=1793398103590");
-@import url("./base.css?v=1793398103590");
-@import url("./common.css?v=1793398103590");
+@import url("./scale.css?v=1793455371846");
+@import url("./base.css?v=1793455371846");
+@import url("./common.css?v=1793455371846");
 
 :root {
   --color-paper: oklch(0.145 0.01 72); --color-paper-2: oklch(0.19 0.012 72); --color-paper-3: oklch(0.24 0.014 72);
