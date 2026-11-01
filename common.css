@@ -256,3 +256,4 @@
 }
 
 .nav-links .nav-biz, .side-nav .nav-biz { color: var(--color-accent); }
+.btn .ico { width: 1.15em; height: 1.15em; flex: none; }
