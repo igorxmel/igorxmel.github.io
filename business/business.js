@@ -109,7 +109,14 @@
   const miniBtn = $('.mini-btn');
   if (miniBtn) {
     const cards = $$('.card'), wires = $$('.wire'), tbody = $('.sheet tbody'), tg = $('.tg-log');
-    const step = calm ? 0 : 900;
+    const pills = $$('.flow-tabs button');
+    const small = matchMedia('(max-width: 60rem)');
+    const step = calm ? 0 : small.matches ? 1300 : 900;
+    const view = (i) => {
+      cards.forEach((c, k) => c.classList.toggle('cur', k === i));
+      pills.forEach((b, k) => b.classList.toggle('on', k === i));
+    };
+    pills.forEach((b) => b.addEventListener('click', () => view(+b.dataset.i)));
     const later = (fn, ms) => (ms ? setTimeout(fn, ms) : fn());
     const timers = [];
     const at = (fn, ms) => timers.push(later(fn, ms));
@@ -117,6 +124,7 @@
       timers.forEach(clearTimeout); timers.length = 0;
       cards.forEach((c) => c.classList.remove('on'));
       wires.forEach((w) => w.classList.remove('go'));
+      view(0);
       $$('.row-new', tbody).forEach((r) => r.remove());
       tg.replaceChildren();
       miniBtn.disabled = false;
@@ -129,6 +137,7 @@
       at(() => wires[0].classList.add('go'), calm ? 0 : 150);
       at(() => {
         cards[1].classList.add('on');
+        view(1);
         const tr = document.createElement('tr');
         tr.className = 'row-new';
         tr.innerHTML = '<td>Анна</td><td>+7 900 000 00 00</td><td><span class="tag new">Новая</span></td>';
@@ -137,6 +146,7 @@
       }, step);
       at(() => {
         cards[2].classList.add('on');
+        view(2);
         const m = document.createElement('div');
         m.className = 'tg-msg';
         m.innerHTML = '<b>Новая заявка</b>Анна, +7 900 000 00 00<br>Дегустация в субботу';
@@ -167,9 +177,13 @@
   }
 
   /* сайт: компьютер и телефон */
+  const browser = $('.browser'), narrow = matchMedia('(max-width: 48rem)');
+  const syncView = () => { browser.dataset.view = narrow.matches ? 'phone' : ($('.seg button.on') || {}).dataset.view || 'desktop'; };
+  narrow.addEventListener('change', syncView);
+  syncView();
   $$('.seg button').forEach((b) => b.addEventListener('click', () => {
     $$('.seg button').forEach((x) => { x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', x === b); });
-    $('.browser').dataset.view = b.dataset.view;
+    syncView();
   }));
 
   /* кнопка «Написать» внизу на телефоне */
