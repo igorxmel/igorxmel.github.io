@@ -257,3 +257,14 @@
 
 .nav-links .nav-biz, .side-nav .nav-biz { color: var(--color-accent); }
 .btn .ico { width: 1.15em; height: 1.15em; flex: none; }
+
+/* телефон: ссылка для бизнеса в шапке, нормальные зоны нажатия */
+.nav-biz-m { display: none; }
+.wordmark { min-height: 44px; align-items: center; }
+.job-co { min-height: 44px; }
+@media (max-width: 60rem) {
+  .nav-in { gap: var(--space-sm); }
+  .nav-biz-m { display: inline-flex; align-items: center; min-height: 44px; margin-left: auto; padding-inline: var(--space-2xs); color: var(--color-accent); font-size: var(--text-sm); font-weight: 500; text-decoration: none; white-space: nowrap; }
+  .lang { margin-left: 0; }
+}
+@media (max-width: 23rem) { .wordmark-nick { display: none; } }
