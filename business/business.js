@@ -47,15 +47,19 @@
     });
   });
 
+
   /* бот */
   const log = $('.chat-log'), keys = $('.chat-keys');
   const st = {};
+  const MAP = '<svg class="map" viewBox="0 0 280 150" role="img" aria-label="Карта: кофейня на улице Садовой"><rect width="280" height="150" fill="#eae6dc"/><rect x="0" y="92" width="280" height="22" fill="#bfe0ee"/><rect x="170" y="8" width="96" height="62" rx="6" fill="#cfe5c6"/><g fill="#dcd5c6"><rect x="12" y="10" width="62" height="34" rx="3"/><rect x="86" y="10" width="62" height="34" rx="3"/><rect x="12" y="58" width="62" height="26" rx="3"/><rect x="86" y="58" width="62" height="26" rx="3"/><rect x="12" y="124" width="100" height="20" rx="3"/><rect x="170" y="124" width="100" height="20" rx="3"/></g><g stroke="#fff" stroke-width="7" fill="none"><path d="M0 52h280M156 0v150"/></g><path d="M0 52h280M156 0v150" stroke="#f3efe6" stroke-width="3" fill="none"/><g transform="translate(156 52)"><ellipse cx="0" cy="10" rx="9" ry="3" fill="#0003"/><path d="M0 8c-9-10-13-14-13-21a13 13 0 0 1 26 0c0 7-4 11-13 21z" fill="#e5533d"/><circle cy="-13" r="5" fill="#fff"/></g></svg>';
   const flow = {
-    start: ['Здравствуйте! Что хотите сделать?', [['Заказать кофе', 'order'], ['Часы работы', 'hours']]],
-    hours: ['Работаем каждый день с 8:00 до 21:00. Адрес: ул. Садовая, 5.', [['Заказать кофе', 'order'], ['Сначала', 'start']]],
-    order: ['Что берёте?', [['Капучино', 'time'], ['Латте', 'time'], ['Эспрессо', 'time']]],
-    time: ['Когда заберёте?', [['Через 15 минут', 'done'], ['Через час', 'done']]],
-    done: [() => `Готово! Заказ №127: ${st.drink.toLowerCase()}, ${st.when.toLowerCase()}. Ждём вас!`, [['Заказать ещё', 'order'], ['Сначала', 'start']]],
+    start: { t: 'Здравствуйте! Что хотите сделать?', k: [['Заказать кофе', 'order'], ['Часы работы и адрес', 'where']] },
+    where: { t: 'Мы на улице Садовой, 5, вход со двора. Работаем каждый день с 8:00 до 21:00.', map: true, k: [['Заказать кофе', 'order'], ['Оценить кофейню', 'rate']] },
+    order: { t: 'Что берёте?', k: [['Капучино', 'time'], ['Латте', 'time'], ['Эспрессо', 'time']] },
+    time: { t: 'Когда заберёте?', k: [['Через 15 минут', 'done'], ['Через час', 'done']] },
+    done: { t: () => `Готово! Заказ №127: ${st.drink.toLowerCase()}, ${st.when.toLowerCase()}. Ждём вас!`, k: [['Как добраться', 'where'], ['Оценить кофейню', 'rate']] },
+    rate: { t: 'Как вам у нас? Оценка поможет нам стать лучше.', k: [['5 ★', 'thanks'], ['4 ★', 'thanks'], ['3 ★', 'thanks'], ['2 ★', 'thanks'], ['1 ★', 'thanks']], star: true },
+    thanks: { t: () => (st.stars >= 4 ? 'Спасибо! Рады, что вам понравилось. Ждём снова.' : 'Спасибо за честность. Мы передали отзыв управляющему и постараемся исправиться.'), k: [['Сначала', 'start']] },
   };
   const add = (text, who) => {
     const m = document.createElement('div');
@@ -65,23 +69,34 @@
     log.scrollTop = log.scrollHeight;
     return m;
   };
+  const addMap = () => {
+    const m = document.createElement('div');
+    m.className = 'msg bot mapmsg';
+    m.innerHTML = MAP + '<div class="map-cap"><b>ул. Садовая, 5</b><span>открыто до 21:00</span></div>';
+    log.append(m);
+    log.scrollTop = log.scrollHeight;
+  };
   const botSay = (step) => {
     keys.replaceChildren();
-    const [t, opts] = flow[step];
+    const s = flow[step];
     const render = () => {
-      add(typeof t === 'function' ? t() : t, 'bot');
-      opts.forEach(([label, to]) => {
+      add(typeof s.t === 'function' ? s.t() : s.t, 'bot');
+      if (s.map) addMap();
+      s.k.forEach(([label, to]) => {
         const b = document.createElement('button');
         b.type = 'button';
         b.textContent = label;
+        if (s.star) b.classList.add('star');
         b.addEventListener('click', () => {
           if (step === 'order') st.drink = label;
           if (step === 'time') st.when = label;
+          if (step === 'rate') st.stars = parseInt(label, 10);
           if (to === 'start') log.replaceChildren(); else add(label, 'me');
           botSay(to);
         });
         keys.append(b);
       });
+      log.scrollTop = log.scrollHeight;
     };
     if (calm) { render(); return; }
     const tp = add('...', 'bot');
@@ -90,23 +105,65 @@
   };
   if (log) botSay('start');
 
-  /* автоматизация */
-  const go = $('.flow-go');
-  if (go) {
-    const nodes = $$('.node'), wires = $$('.wire'), fl = $('.flow-log');
-    const lines = ['Заявка получена с сайта', 'Строка добавлена в таблицу', 'Уведомление отправлено вам в Telegram'];
-    const line = (t) => { const li = document.createElement('li'); li.textContent = t; fl.append(li); };
-    go.addEventListener('click', () => {
-      go.disabled = true;
-      nodes.forEach((n) => n.classList.remove('on'));
+  /* автоматизация: сайт, таблица, Telegram */
+  const miniBtn = $('.mini-btn');
+  if (miniBtn) {
+    const cards = $$('.card'), wires = $$('.wire'), tbody = $('.sheet tbody'), tg = $('.tg-log');
+    const step = calm ? 0 : 900;
+    const later = (fn, ms) => (ms ? setTimeout(fn, ms) : fn());
+    const timers = [];
+    const at = (fn, ms) => timers.push(later(fn, ms));
+    const reset = () => {
+      timers.forEach(clearTimeout); timers.length = 0;
+      cards.forEach((c) => c.classList.remove('on'));
       wires.forEach((w) => w.classList.remove('go'));
-      fl.replaceChildren();
-      const step = calm ? 0 : 800;
-      nodes[0].classList.add('on'); line(lines[0]);
-      setTimeout(() => wires[0].classList.add('go'), 100);
-      setTimeout(() => { nodes[1].classList.add('on'); line(lines[1]); wires[1].classList.add('go'); }, step);
-      setTimeout(() => { nodes[2].classList.add('on'); line(lines[2]); go.disabled = false; }, step * 2);
+      $$('.row-new', tbody).forEach((r) => r.remove());
+      tg.replaceChildren();
+      miniBtn.disabled = false;
+      miniBtn.textContent = 'Записаться';
+    };
+    miniBtn.addEventListener('click', () => {
+      miniBtn.disabled = true;
+      miniBtn.textContent = 'Заявка отправлена';
+      cards[0].classList.add('on');
+      at(() => wires[0].classList.add('go'), calm ? 0 : 150);
+      at(() => {
+        cards[1].classList.add('on');
+        const tr = document.createElement('tr');
+        tr.className = 'row-new';
+        tr.innerHTML = '<td>Анна</td><td>+7 900 000 00 00</td><td><span class="tag new">Новая</span></td>';
+        tbody.prepend(tr);
+        wires[1].classList.add('go');
+      }, step);
+      at(() => {
+        cards[2].classList.add('on');
+        const m = document.createElement('div');
+        m.className = 'tg-msg';
+        m.innerHTML = '<b>Новая заявка</b>Анна, +7 900 000 00 00<br>Дегустация в субботу';
+        tg.append(m);
+        const k = document.createElement('div');
+        k.className = 'tg-keys';
+        k.innerHTML = '<button type="button">Принять</button><button type="button">Позвонить</button>';
+        tg.append(k);
+        const [ok, call] = $$('button', k);
+        ok.addEventListener('click', () => {
+          k.remove();
+          const r = document.createElement('div');
+          r.className = 'tg-msg';
+          r.innerHTML = '<b>Заявка принята</b>Клиенту отправлено подтверждение.';
+          tg.append(r);
+          const tag = $('.row-new .tag', tbody);
+          if (tag) { tag.textContent = 'Принята'; tag.classList.remove('new'); }
+        });
+        call.addEventListener('click', () => {
+          const r = document.createElement('div');
+          r.className = 'tg-msg';
+          r.innerHTML = '<b>Звоним клиенту</b>Номер набран с вашего телефона.';
+          tg.append(r);
+        });
+      }, step * 2);
     });
+    $('.flow-reset').addEventListener('click', reset);
   }
 
   /* сайт: компьютер и телефон */
@@ -115,24 +172,13 @@
     $('.browser').dataset.view = b.dataset.view;
   }));
 
-  /* калькулятор */
-  const base = { site: 15000, bot: 15000, auto: 10000, host: 2000 };
-  const mult = [1, 2, 3.5];
-  const sel = { kind: 'site', level: 0 };
-  const sum = $('.calc-sum');
-  const fmt = (n) => new Intl.NumberFormat('ru-RU').format(n).replace(/\s/g, ' ');
-  const upd = () => {
-    const v = Math.round(base[sel.kind] * mult[sel.level] / 500) * 500;
-    sum.textContent = `от ${fmt(v)} ₽${sel.kind === 'host' ? ' в месяц' : ''}`;
-    sum.classList.remove('bump');
-    void sum.offsetWidth;
-    sum.classList.add('bump');
-  };
-  $$('.chips').forEach((g) => g.addEventListener('click', (e) => {
-    const b = e.target.closest('button');
-    if (!b) return;
-    $$('button', g).forEach((x) => { x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', x === b); });
-    sel[g.dataset.group] = g.dataset.group === 'level' ? +b.dataset.v : b.dataset.v;
+  /* кнопка «Написать» внизу на телефоне */
+  const dock = $('#dock'), contact = $('#contact');
+  if (dock) {
+    let nearContact = false;
+    const upd = () => dock.classList.toggle('show', scrollY > 500 && !nearContact);
+    if ('IntersectionObserver' in window && contact) new IntersectionObserver((es) => { nearContact = es[0].isIntersecting; upd(); }).observe(contact);
+    addEventListener('scroll', upd, { passive: true });
     upd();
-  }));
+  }
 })();
