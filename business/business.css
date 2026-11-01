@@ -44,3 +44,10 @@ h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
 .steps li { padding-top: var(--space-md); border-top: 2px solid var(--color-ink); }
 .steps h3 { font-size: var(--text-xl); line-height: 1.15; }
 @media (max-width: 48rem) { .svc li { grid-template-columns: 1fr; } .svc .price { grid-column: 1; grid-row: auto; margin-top: var(--space-sm); } .steps { grid-template-columns: 1fr; gap: var(--space-lg); } .svc li { padding-block: var(--space-lg); } }
+
+.eyebrow { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.5rem, 2.4vw, 2.25rem); letter-spacing: -0.01em; margin-bottom: var(--space-lg); }
+.rot { display: inline-grid; vertical-align: bottom; color: var(--color-accent); }
+.rw { grid-area: 1 / 1; opacity: 0; transform: translateY(0.35em); transition: opacity 420ms var(--ease-out), transform 420ms var(--ease-out); }
+.rw.on { opacity: 1; transform: none; }
+.rw.out { opacity: 0; transform: translateY(-0.35em); }
+.actions .btn { white-space: nowrap; }

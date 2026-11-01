@@ -254,3 +254,5 @@
   .hk-list li { padding-block: var(--space-sm); font-size: var(--text-md); }
   .hk-r { font-size: var(--text-sm); }
 }
+
+.nav-links .nav-biz, .side-nav .nav-biz { color: var(--color-accent); }

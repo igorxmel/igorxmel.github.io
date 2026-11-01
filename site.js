@@ -62,7 +62,7 @@
   }
 
   /* активный пункт меню */
-  const links = [...document.querySelectorAll('.side-nav a, .nav-links a')];
+  const links = [...document.querySelectorAll('.side-nav a[href^="#"], .nav-links a[href^="#"]')];
   const targets = links.map((a) => document.querySelector(a.getAttribute('href'))).filter(Boolean);
   if (links.length && 'IntersectionObserver' in window) {
     const spy = new IntersectionObserver((es) => es.forEach((e) => {
