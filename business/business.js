@@ -3,17 +3,80 @@
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* тема: выбор запоминается, без выбора следуем настройке браузера или системы */
+  const themeBtn = $('#theme'), root = document.documentElement, sysDark = matchMedia('(prefers-color-scheme: dark)');
+  const setTheme = (t) => {
+    root.dataset.theme = t;
+    $('meta[name="theme-color"]').content = t === 'dark' ? '#14100b' : '#f6f1e7';
+    const label = t === 'dark' ? 'Включить светлую тему' : 'Включить тёмную тему';
+    themeBtn.setAttribute('aria-label', label);
+    themeBtn.title = label;
+  };
+  const savedTheme = () => { try { return localStorage.getItem('biz-theme'); } catch (e) { return null; } };
+  setTheme(root.dataset.theme);
+  themeBtn.addEventListener('click', () => {
+    const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    setTheme(next);
+    try { localStorage.setItem('biz-theme', next); } catch (e) {}
+  });
+  sysDark.addEventListener('change', (e) => { if (!savedTheme()) setTheme(e.matches ? 'dark' : 'light'); });
+
   /* слово в заголовке */
-  const words = $$('.rot .rw');
+  const words = $$('.rot .rw'), rot = $('.rot');
+  let wordIndex = 0;
+  /* место под слово равно его длине, поэтому строка не уезжает */
+  const fitWord = () => { rot.style.width = words[wordIndex].getBoundingClientRect().width + 'px'; };
+  if (rot) {
+    fitWord();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitWord);
+    addEventListener('resize', fitWord);
+  }
   if (words.length > 1 && !calm) {
-    let i = 0;
     setInterval(() => {
-      const prev = words[i];
-      i = (i + 1) % words.length;
+      const prev = words[wordIndex];
+      wordIndex = (wordIndex + 1) % words.length;
       prev.classList.replace('on', 'out');
-      words[i].classList.add('on');
+      words[wordIndex].classList.add('on');
+      fitWord();
       setTimeout(() => prev.classList.remove('out'), 450);
     }, 2600);
+  }
+
+  /* аватарка: при наведении лёгкий параллакс, по нажатию переезжает в центр и становится крупнее */
+  const who = $('.eyebrow'), avaBtn = $('.ava-btn');
+  if (who && avaBtn) {
+    const name = $('.who', who);
+    if (matchMedia('(hover: hover) and (pointer: fine)').matches && !calm) {
+      avaBtn.addEventListener('pointermove', (e) => {
+        const r = avaBtn.getBoundingClientRect();
+        avaBtn.style.setProperty('--mx', (((e.clientX - r.left) / r.width) * 2 - 1).toFixed(2));
+        avaBtn.style.setProperty('--my', (((e.clientY - r.top) / r.height) * 2 - 1).toFixed(2));
+      });
+      avaBtn.addEventListener('pointerleave', () => { avaBtn.style.setProperty('--mx', 0); avaBtn.style.setProperty('--my', 0); });
+    }
+    let moves = [];
+    const offset = (from, to) => `translate(${from.left - to.left}px, ${from.top - to.top}px) scale(${from.width / to.width})`;
+    avaBtn.addEventListener('click', () => {
+      const open = !who.classList.contains('open');
+      const a0 = avaBtn.getBoundingClientRect(), n0 = name.getBoundingClientRect(), h0 = who.getBoundingClientRect().height;
+      moves.forEach((m) => m.cancel());
+      who.classList.toggle('open', open);
+      avaBtn.setAttribute('aria-expanded', open);
+      avaBtn.setAttribute('aria-label', open ? 'Уменьшить фото' : 'Показать фото крупнее');
+      const settled = () => dispatchEvent(new Event('resize'));
+      if (calm) { settled(); return; }
+      const h1 = who.getBoundingClientRect().height;
+      who.style.height = `${h0}px`;
+      const a1 = avaBtn.getBoundingClientRect(), n1 = name.getBoundingClientRect();
+      const timing = { duration: 560, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' };
+      moves = [
+        avaBtn.animate({ transform: [offset(a0, a1), 'none'], transformOrigin: ['0 0', '0 0'] }, timing),
+        name.animate({ transform: [offset(n0, n1), 'none'], transformOrigin: ['0 0', '0 0'] }, timing),
+        who.animate({ height: [`${h0}px`, `${h1}px`] }, timing),
+      ];
+      who.style.height = '';
+      moves[0].onfinish = settled;
+    });
   }
 
   /* появление при прокрутке */
@@ -106,8 +169,10 @@
   if (log) botSay('start');
 
   /* автоматизация: сайт, таблица, Telegram */
-  const miniBtn = $('.mini-btn');
-  if (miniBtn) {
+  const miniBtn = $('.mini-btn'), form = $('form.mini');
+  if (miniBtn && form) {
+    const lock = (on) => $$('input, button', form).forEach((n) => { n.disabled = on; });
+    $$('input.field', form).forEach((n) => n.addEventListener('focus', () => n.select()));
     const cards = $$('.card'), wires = $$('.wire'), tbody = $('.sheet tbody'), tg = $('.tg-log');
     const pills = $$('.flow-tabs button');
     const small = matchMedia('(max-width: 60rem)');
@@ -127,11 +192,16 @@
       view(0);
       $$('.row-new', tbody).forEach((r) => r.remove());
       tg.replaceChildren();
-      miniBtn.disabled = false;
+      lock(false);
       miniBtn.textContent = 'Записаться';
     };
-    miniBtn.addEventListener('click', () => {
-      miniBtn.disabled = true;
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (miniBtn.disabled) return;
+      const name = form.elements.name.value.trim() || 'Анна';
+      const phone = form.elements.phone.value.trim() || '+7 900 000 00 00';
+      const topic = form.elements.topic.value;
+      lock(true);
       miniBtn.textContent = 'Заявка отправлена';
       cards[0].classList.add('on');
       at(() => wires[0].classList.add('go'), calm ? 0 : 150);
@@ -140,7 +210,10 @@
         view(1);
         const tr = document.createElement('tr');
         tr.className = 'row-new';
-        tr.innerHTML = '<td>Анна</td><td>+7 900 000 00 00</td><td><span class="tag new">Новая</span></td>';
+        tr.innerHTML = '<td><b></b><small></small></td><td></td><td><span class="tag new">Новая</span></td>';
+        $('b', tr).textContent = name;
+        $('small', tr).textContent = phone;
+        tr.children[1].textContent = topic;
         tbody.prepend(tr);
         wires[1].classList.add('go');
       }, step);
@@ -149,7 +222,10 @@
         view(2);
         const m = document.createElement('div');
         m.className = 'tg-msg';
-        m.innerHTML = '<b>Новая заявка</b>Анна, +7 900 000 00 00<br>Дегустация в субботу';
+        m.innerHTML = '<b>Новая заявка</b><span></span><br><span></span>';
+        const [who, what] = $$('span', m);
+        who.textContent = name + ', ' + phone;
+        what.textContent = topic;
         tg.append(m);
         const k = document.createElement('div');
         k.className = 'tg-keys';
@@ -184,6 +260,43 @@
   $$('.seg button').forEach((b) => b.addEventListener('click', () => {
     $$('.seg button').forEach((x) => { x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', x === b); });
     syncView();
+  }));
+
+  /* переход из услуг сразу к нужному примеру */
+  $$('[data-tab]').forEach((a) => a.addEventListener('click', () => {
+    const t = document.getElementById(a.dataset.tab);
+    if (t) show(t);
+  }));
+
+  /* телефон и почта: на компьютере копируем, на телефоне открываем как обычно */
+  const desktop = matchMedia('(hover: hover) and (pointer: fine)');
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.setAttribute('role', 'status');
+  document.body.append(toast);
+  let toastTimer;
+  const say = (text) => {
+    toast.textContent = text;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2400);
+  };
+  const copy = async (text) => {
+    try { await navigator.clipboard.writeText(text); return true; } catch (e) {}
+    const area = document.createElement('textarea');
+    area.value = text;
+    area.style.cssText = 'position:fixed;opacity:0';
+    document.body.append(area);
+    area.select();
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) {}
+    area.remove();
+    return ok;
+  };
+  $$('a[data-copy]').forEach((a) => a.addEventListener('click', async (e) => {
+    if (!desktop.matches) return;
+    e.preventDefault();
+    say(await copy(a.dataset.copy) ? `${a.dataset.done}: ${a.dataset.copy}` : a.dataset.copy);
   }));
 
   /* кнопка «Написать» внизу на телефоне */

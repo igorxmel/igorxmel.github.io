@@ -75,6 +75,31 @@
     if (hero) spy.observe(hero);
   }
 
+  /* почта: на компьютере копируем адрес, на телефоне открываем как обычно */
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.setAttribute('role', 'status');
+  document.body.append(toast);
+  let toastTimer;
+  document.querySelectorAll('a[data-copy]').forEach((a) => a.addEventListener('click', async (e) => {
+    if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    e.preventDefault();
+    let done = false;
+    try { await navigator.clipboard.writeText(a.dataset.copy); done = true; } catch (err) {
+      const area = document.createElement('textarea');
+      area.value = a.dataset.copy;
+      area.style.cssText = 'position:fixed;opacity:0';
+      document.body.append(area);
+      area.select();
+      try { done = document.execCommand('copy'); } catch (err2) {}
+      area.remove();
+    }
+    toast.textContent = done ? `${root.lang === 'en' ? 'Address copied' : 'Адрес скопирован'}: ${a.dataset.copy}` : a.dataset.copy;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2400);
+  }));
+
   /* живые версия и звёзды с GitHub; при ошибке остаются значения из разметки */
   const repos = new Set([...document.querySelectorAll('[data-gh-version], [data-gh-stars]')].map((n) => n.dataset.ghVersion || n.dataset.ghStars));
   repos.forEach(async (repo) => {
