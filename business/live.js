@@ -375,10 +375,10 @@
       const r = n.matches(BLOCK) ? n.getBoundingClientRect() : range.getBoundingClientRect();
       if (!r.width) return;
       /* длина заголовка меняется вместе со словом, поэтому запас шире */
-      const side = n.matches('.hero h1 .ln') ? 96 : 4;
+      const side = n.matches('.hero h1 .ln') ? 96 : 20;
       const part = document.createElement('i');
       const left = Math.max(0, r.left - side), right = Math.min(html.clientWidth, r.right + side);
-      part.style.cssText = `left:${left.toFixed(0)}px;top:${(r.top + y - 4).toFixed(0)}px;width:${(right - left).toFixed(0)}px;height:${(r.height + 8).toFixed(0)}px`;
+      part.style.cssText = `left:${left.toFixed(0)}px;top:${(r.top + y - 16).toFixed(0)}px;width:${(right - left).toFixed(0)}px;height:${(r.height + 32).toFixed(0)}px`;
       parts.append(part);
     });
     html.classList.remove('measuring');

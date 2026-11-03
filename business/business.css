@@ -455,7 +455,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.015em; }
 :root { --scrim: color-mix(in srgb, var(--color-paper) 86%, transparent); }
 #live { z-index: -3; }
 #scrim { position: absolute; top: 0; left: 0; width: 100%; height: 0; z-index: -2; pointer-events: none; }
-#scrim i { position: absolute; display: block; border-radius: 10px; background: var(--scrim); box-shadow: 0 0 18px 12px var(--scrim); }
+#scrim i { position: absolute; display: block; background: var(--scrim); filter: blur(16px); }
 .bg-glow { z-index: -1; }
 .measuring .rv { transition: none !important; transform: none !important; }
 
