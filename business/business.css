@@ -55,7 +55,6 @@ h1, h2, h3 { font-weight: 500; letter-spacing: -0.02em; }
 .ico { width: 1.15em; height: 1.15em; flex: none; }
 .btn { gap: var(--space-xs); }
 .nav-tel { display: inline-flex; align-items: center; gap: var(--space-xs); color: var(--color-ink); font-weight: 500; text-decoration: none; white-space: nowrap; }
-.nav-tel:hover { color: var(--color-accent); }
 @media (max-width: 40rem) { .nav nav a.lnk { display: none; } .nav nav a.nav-tel { display: inline-flex; } .nav-tel span { display: none; } .nav-tel { justify-content: center; width: 40px; height: 40px; border: 1px solid var(--color-rule); border-radius: var(--radius-btn); } .nav nav { gap: var(--space-sm); } }
 @media (max-width: 64rem) and (min-width: 40.01rem) { .nav nav a.lnk { display: none; } }
 
@@ -516,3 +515,17 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.015em; }
 
 /* крупные цифры шагов */
 .steps .idx { display: block; margin-bottom: var(--space-xs); font-size: clamp(2.25rem, 3.2vw, 2.875rem); font-weight: 500; line-height: 1; font-variant-numeric: lining-nums; }
+
+/* шапка: наведение как на главной */
+.mark, .nav nav a:not(.btn) { transition: color var(--dur-short) var(--ease-out); }
+.nav .btn-sm { transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out), transform var(--dur-short) var(--ease-out); }
+.nav .btn-sm:active { transform: translateY(0); }
+.theme { transition: border-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out), background-color var(--dur-short) var(--ease-out); }
+@media (hover: hover) and (pointer: fine) {
+  .mark:hover { color: var(--color-accent); }
+  .nav nav a:not(.btn):hover { color: var(--color-ink); }
+  .nav nav a.nav-tel:hover { color: var(--color-accent); }
+  .nav .btn-sm:hover { background: color-mix(in oklab, var(--color-accent) 88%, black); border-color: color-mix(in oklab, var(--color-accent) 88%, black); transform: translateY(-1px); }
+  :root[data-theme="dark"] .nav .btn-sm:hover { background: color-mix(in oklab, var(--color-accent) 88%, white); border-color: color-mix(in oklab, var(--color-accent) 88%, white); }
+  .theme:hover { background: var(--color-paper-2); }
+}
