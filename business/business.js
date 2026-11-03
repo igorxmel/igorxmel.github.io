@@ -42,18 +42,10 @@
     }, 2600);
   }
 
-  /* аватарка: при наведении лёгкий параллакс, по нажатию переезжает в центр и становится крупнее */
+  /* аватарка: по нажатию переезжает в центр и становится крупнее */
   const who = $('.eyebrow'), avaBtn = $('.ava-btn');
   if (who && avaBtn) {
     const name = $('.who', who);
-    if (matchMedia('(hover: hover) and (pointer: fine)').matches && !calm) {
-      avaBtn.addEventListener('pointermove', (e) => {
-        const r = avaBtn.getBoundingClientRect();
-        avaBtn.style.setProperty('--mx', (((e.clientX - r.left) / r.width) * 2 - 1).toFixed(2));
-        avaBtn.style.setProperty('--my', (((e.clientY - r.top) / r.height) * 2 - 1).toFixed(2));
-      });
-      avaBtn.addEventListener('pointerleave', () => { avaBtn.style.setProperty('--mx', 0); avaBtn.style.setProperty('--my', 0); });
-    }
     let moves = [];
     const offset = (from, to) => `translate(${from.left - to.left}px, ${from.top - to.top}px) scale(${from.width / to.width})`;
     avaBtn.addEventListener('click', () => {
