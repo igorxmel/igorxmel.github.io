@@ -257,7 +257,7 @@
 
   /* четыре скопления по краям, центр свободен. Окна идут строго вертикально, у каждого своя скорость и свой небольшой сдвиг вбок */
   const TYPES = ['chat', 'flow', 'server', 'deploy', 'site', 'table', 'notice', 'chat2', 'calendar', 'site2', 'report', 'flow2', 'chat3', 'search', 'payment', 'site3', 'reminder'];
-  const HERO_COUNT = 8, TIGHT_COUNT = 11;
+  const HERO_COUNT = 8, HERO_COUNT_TWO = 6, TIGHT_COUNT = 11, ALL_LANES_FROM = 2400;
   const WIDE = 1440, BASE = 240, ROOM = 34, GAP = 18, NAV = 74, END_ROOM = 800, SLOW = 0.2, FAST = 0.62, EDGE = 24;
   const LANES = [
     { side: 'left', from: 0.006, to: 0.04, v: [0.34, 0.62] },
@@ -302,7 +302,9 @@
     const vw = innerWidth, vh = innerHeight, end = document.documentElement.scrollHeight - vh;
     const z = Math.min(1, vw / WIDE), wide = vw > 1024;
     const count = wide ? cards.length : TIGHT_COUNT;
-    const laneCount = wide ? LANES.length : 2;
+    /* внутренние скопления только там, где они не заходят на содержимое страницы: примерно от 2K */
+    const laneCount = vw >= ALL_LANES_FROM ? LANES.length : 2;
+    const heroLimit = laneCount === 2 ? HERO_COUNT_TWO : HERO_COUNT;
     const hero = heroBox();
     const placed = { left: [], right: [] };
     seed = 23;
@@ -312,8 +314,8 @@
       if (i >= count) { el.style.display = 'none'; card.v = 0; return; }
       el.style.display = '';
       const natural = el.offsetHeight + ROOM;
-      const heroCard = i < Math.min(HERO_COUNT, Math.ceil(count * 0.5));
-      const firstLater = Math.min(HERO_COUNT, Math.ceil(count * 0.5));
+      const heroCard = i < Math.min(heroLimit, Math.ceil(count * 0.5));
+      const firstLater = Math.min(heroLimit, Math.ceil(count * 0.5));
       const when = heroCard ? 0 : ((i - firstLater + 0.5) / (count - firstLater)) * end;
       let laneIndex = i % laneCount, spot = null;
       for (let tries = 0; tries < 1500 && !spot; tries++) {
