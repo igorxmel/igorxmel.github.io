@@ -86,7 +86,8 @@
 .proj-p { color: var(--color-ink-2); font-size: var(--text-lead); max-width: 36rem; }
 .proj-links { display: flex; flex-wrap: wrap; gap: var(--space-sm); }
 .proj-media { margin: 0; }
-.proj-media img { width: 100%; border-radius: var(--radius-media); border: 1px solid var(--color-rule); }
+.proj-media img, .proj-media video { width: 100%; border-radius: var(--radius-media); border: 1px solid var(--color-rule); }
+.proj-media video { display: block; height: auto; aspect-ratio: 16 / 9; background: var(--color-paper-2); }
 
 .facts { display: grid; grid-template-columns: repeat(3, minmax(0, auto)); gap: var(--space-lg) var(--space-xl); margin: 0; }
 .facts div { display: grid; gap: var(--space-2xs); }

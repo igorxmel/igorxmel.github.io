@@ -53,6 +53,16 @@
     rv.forEach((n) => io.observe(n));
   } else rv.forEach((n) => n.classList.add('in'));
 
+  /* видео проектов играет без звука, пока его видно; при просьбе меньше движения ждёт нажатия */
+  const clips = document.querySelectorAll('video[data-autoplay]');
+  if (clips.length && 'IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const watch = new IntersectionObserver((es) => es.forEach((e) => {
+      if (e.isIntersecting) e.target.play().catch(() => {});
+      else e.target.pause();
+    }), { threshold: 0.35 });
+    clips.forEach((v) => watch.observe(v));
+  }
+
   /* шапка уплотняется при прокрутке */
   const nav = document.querySelector('.nav');
   if (nav) {
